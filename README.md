@@ -5,7 +5,7 @@
 * Used and Abused – CSS Inheritance and Our Misuse of the Cascade [原文地址](http://www.phase2technology.com/blog/used-and-abused-css-inheritance-and-our-misuse-of-the-cascade/) [译文地址](UAACIAOMOTC.md)
 * Styling Cross-Browser Compatible Range Inputs with CSS [原文地址](http://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/) [译文地址](/SCBCRIWC) [发布地址](http://www.w3cplus.com/html5/styling-cross-browser-compatible-range-inputs-css.html)
 * Understanding SVG Coordinate Systems and Transformations(Part1,Part2,Part3) [原文地址](http://sarasoueidan.com/blog/svg-coordinate-systems/) [译文地址](/USCSAT)
-* Designing For Print With CSS[原文地址](http://www.smashingmagazine.com/2015/01/07/designing-for-print-with-css/)[译文地址](dfpwc/dfpwc/md)
+* Designing For Print With CSS[原文地址](http://www.smashingmagazine.com/2015/01/07/designing-for-print-with-css/)[译文地址](dfpwc/dfpwc.md)
 
 ###进行中
 * Coordinate-Systems-Transformations-and-Units [原文地址](http://www.w3.org/TR/SVG/coords.html#Introduction) [译文地址](CSTAU.md)
