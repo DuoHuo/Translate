@@ -9,11 +9,11 @@ If you're a designer, then you've probably already come across blending effects 
 
 Graphics editors such as Photoshop or Illustrator come with a set of blending modes. **Blend modes** allow you to specify how you want your elements to blend together, thus changing the colors of the area where these elements intersect. Each mode uses a specific color formula to mix the colors of the source and the destination.
 
-图形编辑器例如Photoshop或Illustrator自带了一系列混合模式。**混合模式**让你可以指定混合的元素，从而改变元素交叉区域的颜色。每个模式使用一个特定颜色公式来混合源和目标的颜色。
+图形编辑器例如Photoshop或Illustrator自带了一系列混合模式。**混合模式**让你可以指定混合的元素，从而改变元素交叉区域的颜色。每个模式使用一个特定颜色公式来混合基色和目标色。
 
 Different modes give different end results. Before we talk about the different blend modes, and since we mentioned the **source** and **destination** elements, let's have a quick look at the concept of compositing, and how it is related to blending in CSS.
 
-不同模式带来不同最终结果。在我们讨论不同混合模式前，既然我们提到了**源**和**目标**元素，让我们快速的了解一下合成的概念，以及它和CSS中的混合有什么关系。
+不同模式带来不同最终结果。在我们讨论不同混合模式前，既然我们提到了**基**和**目标**元素，让我们快速的了解一下合成的概念，以及它和CSS中的混合有什么关系。
 
 ###What Is Compositing?
 ###合成是什么？
@@ -30,11 +30,11 @@ A **backdrop** is **the content behind the element** and is what the element is 
 
 Compositing defines how what you want to draw will be blended with what is already drawn on the canvas. The source is what you want to draw, and the destination is what is already drawn (the backdrop).
 
-合成定义了你想要绘制的元素将会如何与画布上已经绘制的元素混合。源是你想要绘制的元素，目标是你已经绘制的元素（背景）。
+合成定义了你想要绘制的元素将会如何与画布上已经绘制的元素混合。基是你想要绘制的元素，目标是你已经绘制的元素（背景）。
 
 So, if you have two elements, and these elements overlap, you can think of the element on top as being the source, and the parts of the element behind that lie beneath it, will be the destination.
 
-所以，如果你有两个元素，这些元素交叠在一起，你可以把上层的元素当做源，另一个元素位于它下面的部分是目标。
+所以，如果你有两个元素，这些元素交叠在一起，你可以把上层的元素当做基，另一个元素位于它下面的部分是目标。
 
 Using different composite operations (there are 16 operations), you can specify which parts of the two overlapping elements will be drawn, and which will not.
 
@@ -133,7 +133,7 @@ color.
 
 The source color is multiplied by the destination color and replaces the destination. The resultant color is always at least as dark as either the source or destination color. **Multiplying any color with black results in black. Multiplying any color with white preserves the original color.**
 
-源颜色和目标颜色复合后替换目标颜色。合成色无论如何与源或者目标色一样深。**任何颜色与黑色复合得到黑色。任何颜色与白色复合保持初始颜色。**
+基色和目标颜色复合后替换目标颜色。合成色无论如何与源或者目标色一样深。**任何颜色与黑色复合得到黑色。任何颜色与白色复合保持初始颜色。**
 
 `screen`
 
@@ -141,7 +141,7 @@ The source color is multiplied by the destination color and replaces the destina
 
 Multiplies the complements of the backdrop and source color values, then complements the result. The result color is always at least as light as either of the two constituent colors. **Screening any color with white produces white; screening with black leaves the original color unchanged.** The effect is similar to projecting multiple photographic slides simultaneously onto a single screen.
 
-把背景的补集和目标颜色值复合，补足结果。结果色总是和两个构成色一样浅。
+把背景的补集和目标颜色值复合，补足结果。结果色总是和两个构成色一样浅。**任何颜色与白色滤色产生白色；和黑色滤色保留颜色不变。**效果类似于在一个屏幕上投影多个幻灯片。
 
 `overlay`
 
@@ -149,44 +149,119 @@ Multiplies the complements of the backdrop and source color values, then complem
 
 Multiplies or screens the colors, depending on the backdrop color value. Source colors overlay the backdrop while preserving its highlights and shadows. The backdrop color is not replaced but is mixed with the source color to reflect the lightness or darkness of the backdrop.
 
+对颜色正片叠底或滤色依赖于背景色值。基色覆盖背景同时保留高光和阴影。背景色没有被替换但是与基色混合来反映背景的亮暗。
+
 `darken`
 
 `变暗模式`
 
 Selects the darker of the backdrop and source colors. The backdrop is replaced with the source where the source is darker; otherwise, it is left unchanged.
 
+选择背景和基色的较暗部分。背景被基色中较暗的部分替换；否则，保持不变。
+
 `lighten`
 
 `变亮模式`
 
 Selects the lighter of the backdrop and source colors. The backdrop is replaced with the source where the source is lighter; otherwise, it is left unchanged.
-color-dodge
+
+选择背景和基色中较亮的部分。背景被基色中较亮的部分替换；否则，保持不变。
+
+`color-dodge`
+
+`颜色减淡模式`
+
 Brightens the backdrop color to reflect the source color. Painting with black produces no changes.
-color-burn
+
+减淡背景色来反映基色。黑色绘制的部分不变。
+
+`color-burn`
+`颜色加深模式`
+
 Darkens the backdrop color to reflect the source color. Painting with white produces no change.
-hard-light
+
+加深背景色来反映基色。白色绘制的部分不变。
+
+`hard-light`
+
+`强光模式`
+
 Multiplies or screens the colors, depending on the source color value. The effect is similar to shining a harsh spotlight on the backdrop.
-soft-light
+
+对颜色正片叠底或滤色依赖于基色值。效果类似于在背景上用强聚光灯照射。
+
+`soft-light`
+
+`柔光模式`
+
 Darkens or lightens the colors, depending on the source color value. The effect is similar to shining a diffused spotlight on the backdrop.
-difference
+
+使颜色变暗或变亮，取决于基色值。效果类似于在背景上用发散的聚光灯照射。
+
+`difference`
+
+`差值模式`
+
 Subtracts the darker of the two constituent colors from the lighter color. Painting with white inverts the backdrop color; painting with black produces no change.
-exclusion
-Produces an effect similar to that of the Difference mode but lower in contrast. Painting with white inverts the backdrop color; painting with black produces no change.
-hue
+
+从较浅的颜色中减去两个组成颜色的较深部分。白色绘制的部分背景反色；黑色绘制的部分不变。
+
+`exclusion`
+
+`排除模式`
+
+Produces an effect similar to that of the Difference mode but lower in contrast. Painting with white **inverts the backdrop color**; painting with black produces no change.
+
+产生类似于差值模式的效果但是对比度更低。白色绘制的部分**背景反色**；黑色绘制的部分不变。
+
+`hue`
+
+`色相模式`
+
 Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color.
-saturation
+
+创建于基色的色相、饱和度和亮度相同的颜色。
+
+`saturation`
+
+`饱和度模式`
+
 Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color. Painting with this mode in an area of the backdrop that is a pure gray (no saturation) produces no change.
-color
+
+创建饱和度与基色相同，色相和亮度与背景色相同的颜色。在背景是纯灰（没有饱和度）的区域使用这个模式不产生改变。
+
+`color`
+
+`颜色模式`
+
 Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color. This preserves the gray levels of the backdrop and is useful for coloring monochrome images or tinting color images.
-luminosity
+
+创建色相和量度和基色相同，饱和度和背景色相同的颜色。保持背景的灰度并且对于给单色图片或图片着色很有用。
+
+`luminosity`
+
+`亮度模式`
+
 Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color. This produces an inverse effect to that of the Color mode. This mode is the one you can use to create monchrome "tinted" image effects like the ones you can see in different website headers.
+
+###monchrome错字
+
+创建亮度和基色相同，色相和饱和度与背景色相同的颜色。产生这个颜色模式反色的效果。你可以用这个模式创建和不同网页头部的图片效果一样的单色图片效果。
+
 The following image shows the result of applying the different blend modes to an image, in the same order mentioned above, starting from the top left corner.
+
+下面图片展示了在一张图片上添加不同混合模式的结果，跟上述提到的顺序一致，从左上角开始。
+
 
 ![](background-blend-mode-examples.png)
 
-For more information about these blend modes, I refer you to this article on the SLR Lounge blog. It claims to be the ultimate visual guide to blend modes, and does include some nice explanations of the blend modes.
+For more information about these blend modes, I refer you to [this article](http://www.slrlounge.com/school/photoshop-blend-modes/) on the SLR Lounge blog. It claims to be the ultimate visual guide to blend modes, and does include some nice explanations of the blend modes.
+
+要获取更多这些混合模式的信息，我推荐你SLR Lounge博客上的[这篇文章](http://www.slrlounge.com/school/photoshop-blend-modes/)。声称是混合模式的终极视觉指南，确实包括了一些关于混合模式非常好的解释。
 
 Personally, I think that even with the definition for each mode at hand, it can be really hard (if not impossible) to predict the result of applying these modes to an image.
+
+从个人角度而言，我认为即使眼前有每个模式的定义，
 
 Picking a suitable blend mode will be—in most cases—a case of trial and error. If you use Instagram you know that sometimes you just go over each of the available filters, applying them one after the other, till you get the effect you're after. (I know I do that!) With CSS blend modes, it's practically the same.
 
