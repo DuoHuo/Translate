@@ -403,21 +403,32 @@ This is because we have **isolated** the image (and any other contents of the `.
 
 这是因为我们把图片和（和任何其他`.img-wrapper`背景的内容）元素的其余部分**隔离**了，因此它们不会再和背景混合。
 
-This brings us to the `isolation` property. But before we move on, note that the `mix-blend-mode` property also applies to SVG elements, and can be used to blend overlapping SVG elements together as well. As a matter of fact, the logo for the CSS Blender demo is a result of applying a mix-blend-mode to the three squares that make the demo up. You can see how the areas where these squares overlap have different colors due to the color blending applied.
+This brings us to the `isolation` property. But before we move on, note that the `mix-blend-mode` property also applies to SVG elements, and can be used to blend overlapping SVG elements together as well. As a matter of fact, the logo for the CSS Blender demo is a result of applying a `mix-blend-mode` to the three squares that make the demo up. You can see how the areas where these squares overlap have different colors due to the color blending applied.
 
-这把我们引入了`isolation`属性。在我们继续前，注意`mix-blend-mode`属性也可以应用在SVG元素上，
+这把我们引入了`isolation`属性。在我们继续前，注意`mix-blend-mode`属性也可以应用在SVG元素上，用来把重叠的SVG元素混合在一起。事实上，CSS混合事例的logo就是把`mix-blend-mode`应用在三个方形上组成的。你可以看到三个方形重叠的区域由于颜色混合的应用有不同的颜色。
 
-Browser support for the mix-blend-mode property is not as wide as that of the background-blend-mode property. For details, refer to the browser compatibility table over at CanIUse.com.
+Browser support for the `mix-blend-mode` property is not as wide as that of the `background-blend-mode` property. For details, refer to [the browser compatibility table over at CanIUse.com](http://caniuse.com/#feat=css-mixblendmode).
 
-Isolating Elements: The Isolation Property
+`mix-blend-mode`属性的浏览器支持不像`background-blend-mode`属性一样广泛。更多细节，参考[CanIUse.com上的支持性表格](http://caniuse.com/#feat=css-backgroundblendmode)。
 
-When a property that leads to the creation of a stacking context is applied to an element, that element is said to be isolated. The last example in the previous section is an example of this happening.
+###Isolating Elements: The `Isolation` Property
+###隔离元素：`Isolation`属性
 
-On the other hand, you can use the isolation property to isolate elements.
+When a property that leads to the creation of a stacking context is applied to an element, that element is said to be **isolated**. The last example in the previous section is an example of this happening.
 
-In SVG, this property defines whether an element is isolated or not. For CSS, setting isolation to isolate will turn the element into a stacking context, and thus affect whether or not the element's contents can blend with their backdrop lying outside this context. By default, the isolation property is set to auto—which implies that they are not isolated.
+当一个能导致层叠环境创建的属性应用在元素上时，我们称这个元素**被隔离**。上一节的最后一个例子是一个这种情况的例子。
 
-If we were to go back to the previous example with the two blended images, we can prevent the image on top from blending with the image behind it by using the isolation property instead of the opacity property.
+On the other hand, you can use the `isolation` property to isolate elements.
+
+另一方面，你可以使用`isolation`属性来隔离元素。
+
+In SVG, this property defines whether an element is isolated or not. For CSS, setting `isolation` to `isolate` will turn the element into a stacking context, and thus affect whether or not the element's contents can blend with their backdrop lying outside this context. By default, the `isolation` property is set to `auto`—which implies that they are not isolated.
+
+在SVG中，这个属性定义一个元素是否被隔离。在CSS中，设置``isolation`为`isolate`会把元素变为层叠环境，因此影响元素的内容是否会和这个环境外的背景混合。默认的，`isolation`属性被设置为`auto`-代表着它们没有被隔离。
+
+If we were to go back to the previous example with the two blended images, we can prevent the image on top from blending with the image behind it by using the `isolation` property instead of the `opacity` property.
+
+如果我们回到之前两个混合图片的例子，我们可以使用`isolation`属性而不是`opacity`属性来防止上层图片与它后面的图片混合。
 
 ```
 	.img-wrapper {
@@ -425,24 +436,47 @@ If we were to go back to the previous example with the two blended images, we ca
 	}
 ```
 
-This has the same effect as using opacity in the previous example. If you use this rule instead of opacity in the live demo, you will get the same result.
+This has the same effect as using `opacity` in the previous example. If you use this rule instead of `opacity` in the live demo, you will get the same result.
+
+这和之前的例子中使用`opacity`有一样的效果。如果你在线上例子中使用这个规则而不是`opacity`，会得到一样的结果。
 
 Note that by creating a stacking context on an element, you are isolating the content of that element and preventing them from blending with the backdrop of that element. However, you can still apply a blend mode to the entire context to blend it with its backdrop.
 
-Moreover, If you are using thebackground-blend-mode property, the isolation property is not needed since background layers must not blend with the content that is behind the element, instead they must act as if they are rendered into an isolated group (the element itself), as specified in the specification. This is why the isolation property will have an effect when used with the mix-blend-mode property, but not with the background-blend-mode property.
+注意通过在元素上创建层叠环境，你把元素的内容隔离并且防止它们和这个元素的背景混合。然而，你仍然可以给整个环境应用混合模式来把它与背景混合。
 
-Note: Order Of Graphical Operations
-CSS blending modes, filters and masks, can all be applied to the same element. But which effect is applied first?
+Moreover, If you are using the `background-blend-mode` property, the `isolation` property is not needed since background layers must not blend with the content that is behind the element, instead they must act as if they are rendered into an isolated group (the element itself), as specified in the specification. This is why the `isolation` property will have an effect when used with the `mix-blend-mode` property, but not with the `background-blend-mode` property.
+
+而且，如果你正在用`background-blend-mode`属性，`isolation`就没有必要了因为背景层一定不会和元素后面的内容混合，规范中规定，它们必须表现出被渲染在一个隔离组中（元素自身）。这就是为什么`isolation`属性和`mix-blend-mode`一起用时有效，和`background-blend-mode`属性一起用时无效。
+
+###Note: Order Of Graphical Operations
+###注意：图形操作的顺序
+
+CSS blending modes, [filters](http://www.w3.org/TR/filter-effects-1/) and [masks](http://www.w3.org/TR/css-masking-1/), can all be applied to the same element. But which effect is applied first?
+
+CSS混合模式，[滤镜](http://www.w3.org/TR/filter-effects-1/) 和 [遮罩](http://www.w3.org/TR/css-masking-1/)，都可以应用在相同元素上。但是哪个效果会首先应用呢？
 
 According to the specification, first any filter effect is applied, then any clipping, masking, blending and compositing.
 
-Final Words
+根据规范，首先任何滤镜效果会被应用，虽然是任何裁剪，遮罩，混合以及复合。
+
+###Final Words
+###最后的话
 With all the graphical operations available to us via CSS, we are getting more possibilities for designing in the browsers—this is particularly interesting if you—like me—are not into graphics editors and don't know your way around them well.
 
-The web platform team at Adobe have been doing a tremendous job bringing many of their tools' graphical capabilities to the web. From filters, to blend modes, clipping and masking, and even CSS Shapes, we are gaining more control over layout and graphics on the web.
+通过CSS的所有可用图形操作，我们有更多浏览器中设计的可能性－这尤其有趣如果你－像我们一样－不使用图形编辑器并且不知道怎么使用它们。
+
+The web platform team at Adobe have been doing a tremendous job bringing many of their tools' graphical capabilities to the web. From filters, to blend modes, clipping and masking, and even [CSS Shapes](http://sarasoueidan.com/blog/css-shapes), we are gaining more control over layout and graphics on the web.
+
+Adobe的网页平台团队进行了庞大的工作来把它们的工具的图形能力移植到网页上。从滤镜，到混合模式，裁切和遮罩，甚至[CSS Shapes](http://sarasoueidan.com/blog/css-shapes)，我们将获得更多网页端的控制布局和图形的能力。
 
 Many creative effects can be created using CSS blend modes, and when combined with other technologies, they open a door to endless creative possibilities.
 
+使用CSS混合模式可以创造许多创造性的效果，结合其他技术，它们打开了一闪通往无尽创造可能性的大门。
+
 I hope you liked this article and found it useful.
 
+我希望你喜欢这篇文章并发现它有用。
+
 Thank you for reading!
+
+感谢阅读！
