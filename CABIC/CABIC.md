@@ -261,52 +261,90 @@ For more information about these blend modes, I refer you to [this article](http
 
 Personally, I think that even with the definition for each mode at hand, it can be really hard (if not impossible) to predict the result of applying these modes to an image.
 
-从个人角度而言，我认为即使眼前有每个模式的定义，
+从个人角度而言，我认为即使眼前有每个模式的定义，要预测出对一张图片应用这些模式的结果依然是很难的（几乎不可能）。
 
 Picking a suitable blend mode will be—in most cases—a case of trial and error. If you use Instagram you know that sometimes you just go over each of the available filters, applying them one after the other, till you get the effect you're after. (I know I do that!) With CSS blend modes, it's practically the same.
 
+在大多数情况下，选择一个合适的混合模式将会是试验和错误。如果你使用Instagram那么你会知道有时候你会尝试每一个可用滤镜，一个接一个应用它们，知道你获得了想要的效果。（我知道我这样做！）在css混合模式中，几乎是一样的。
+
 For that reason, I've created a simple interactive demo that you can use to pick the right blend mode for your effects.
+
+因此，我创建了一个简单的互动演示你可以用来为达到想要效果选择正确的混合模式。
 
 ![Screenshot of the CSS Blender demo.](css-blender-demo-screenshot.png)
 
-You can upload an image, and choose a background color to blend it with. The background color of the live preview (thumbnails) will live-update as you make your way around the color picker. Clicking on a thumbnail will preview the selected blend mode in the larger preview area.
+You can upload an image, and choose a background color to blend it with. The background color of the live preview (thumbnails) will live-update as you make your way around the color picker. **Clicking on a thumbnail will preview the selected blend mode in the larger preview area.**
+
+上传一张图片，选择想要混合的背景色。实时预览（缩略图）的背景色会随着你在拾色器中的移动实时更新。**点击缩略图会在更大的预览区域预览选择的混合模式。**
 
 <a href="http://sarasoueidan.com/demos/css-blender" class="button">Try the blend modes in the demo out.</a>
 
-Of course, the effects will be visible only in browsers that support the background-blend-mode property. For more information about browser support, refer to the compatibility table over at CanIUse.com.
+Of course, the effects will be visible only in browsers that support the `background-blend-mode` property. **For more information about browser support, refer to** [the compatibility table over at CanIUse.com](http://caniuse.com/#feat=css-backgroundblendmode).
+
+当然，只有在支持`background-blend-mode`属性的浏览器中效果才可见。要获取更多浏览器支持信息，参考[CanIUse.com上的支持性表格](http://caniuse.com/#feat=css-backgroundblendmode)。
 
 In addition to blending a background image with a background color in the interactive demo, you can also blend a piece of text with the element that has this background.
 
-But blending separate elements together requires a property other than the background-blend-mode property. Let's have a look at that next.
+除了演示例子中的把背景图与背景色混合，你也可以把文字和有背景的元素混合。
 
-Blending An Element With Elements In Its Backdrop: The Mix-Blend-Mode Property
-As we mentioned earlier, a backdrop is the content behind the element and is what the element is composited with.
+But blending separate elements together requires a property other than the `background-blend-mode` property. Let's have a look at that next.
+
+然而要把分离元素混合到一起需要除了`background-blend-mode`之外的属性。下面让我们来看一看。
+
+###Blending An Element With Elements In Its Backdrop: The `Mix-Blend-Mode` Property
+###将元素与之背景中的元素混合：`Mix-Blend-Mode`属性
+
+As we mentioned earlier, a **backdrop** is **the content behind the element** and is what the element is composited with.
+
+我们之前提到，**背景**是**元素背后的部分**也是元素与之复合的部分。
 
 The content behind the element can be anything—including other elements. And this is where the interesting effects come in. Think fixed headers blending with the content as the page scrolls down, or text blended with an image in the background, or text blending with other text, etc.
 
-Blending elements together is done using the mix-blend-mode property.
+元素背后的部分可以是任何东西－包括其他元素。这里会产生有趣的效果。试想一下当页面向下滚动时固定的头部和内容混合，或者文字和背景上的图片混合，或者文字和其他文字混合等等。
 
-The mix-blend-mode property is similar to the background-blend-mode property, and takes the same blend mode values. So, you can specify any blend mode to get different blending effects.
+Blending elements together is done using the `mix-blend-mode` property.
 
-For example, the text in the following image blends with the image behind it using mix-blend-mode: difference, giving the illusion of the water bubbles passing through and in front of the text. The reason this effect is established is the color inversion process of the difference mode.
+使用`mix-blend-mode`属性把元素混合在一起。
+
+The `mix-blend-mode` property is similar to the `background-blend-mode` property, and takes the same blend mode values. So, you can specify any blend mode to get different blending effects.
+
+`mix-blend-mode`属性类似于`background-blend-mode`属性，使用相同的混合模式值。所以你可以指定任何混合模式来达到不同的混合效果。
+
+For example, the text in the following image blends with the image behind it using `mix-blend-mode: difference`, giving the illusion of the water bubbles passing through and in front of the text. The reason this effect is established is the color inversion process of the `difference` mode.
+
+例如，下面图片中的文字与下方图片使用`mix-blend-mode: difference`混合，表现出水泡穿过并且在文字上放的错觉。这个效果的原理是`difference`模式下的颜色反转。
 
 ![](mix-blend-mode-example-1.png)
 
-The area of the image where it overlaps with the text is the text's backdrop, and that is where the blending happens. You can check the live demo out here.
+The area of the image where it overlaps with the text is the text's backdrop, and that is where the blending happens. You can check the live demo out [here](http://codepen.io/SaraSoueidan/pen/e90334f6ffdbb2a2cdd5604e769054e4?editors=110).
 
-Using mix-blend-mode, you can create many creative effects—far more than I could list in this post. One particularly interesting effect you can create is see-through text. Without CSS blend modes, you would need CSS masking and/or background clipping, along with some CSS hackery to create this effect and make it work.
+这幅图片与文字重叠的地方是文字背景，也是混合的地方。你可以在[这里](http://codepen.io/SaraSoueidan/pen/e90334f6ffdbb2a2cdd5604e769054e4?editors=110)查看在线演示。
 
-With blend modes, and using the difference blend mode again, you can create this effect by—again—leveraging the color inversion process.
+Using `mix-blend-mode`, you can create many creative effects—far more than I could list in this post. One particularly interesting effect you can create is see-through text. Without CSS blend modes, you would need CSS masking and/or background clipping, along with some CSS hackery to create this effect and make it work.
+
+使用`mix-blend-mode`，你可以创建许多创造性效果－远不止我在这片文章中列的这些。你可以创建的一个特别的有趣的效果是－透过文字。没有CSS混合模式，你需要CSS遮罩和/或背景裁剪，以及一些CSS hackery来创建这些效果并使之生效。
+
+With blend modes, and using the `difference` blend mode again, you can create this effect by—again—leveraging the color inversion process.
+
+通过混合模式，再一次使用`difference`混合模式，你可以再一次借助反色过程创造这样的效果。
 
 The following image shows this effect in action. It is merely a piece of text, positioned on top of an image, and blended with it.
 
+下面图片实际展示了效果。这不过是一块文字，位于一张图片上方并且与之混合。
+
 ![](see-through-text-mix-blend-mode.png)
 
-That's pretty cool, isn't it? You can check the live demo out here.
+That's pretty cool, isn't it? You can check the live demo out [here](http://codepen.io/SaraSoueidan/pen/887433527fac4e926e84b613be483bfc?editors=110).
+
+这很酷，不是吗？你可以在[这里](http://codepen.io/SaraSoueidan/pen/887433527fac4e926e84b613be483bfc?editors=110)查看在线演示。
 
 It is worth noting here that the colors you choose strongly affect the end result. That being said, the interactive demo can make picking the right colors for such an effect easier and faster.
 
-In the interactive demo, you have an option to add editable text to the preview area, and then style that text and blend it with the preview image using mix-blend-mode. The following is a screenshot showing an example.
+值得注意的是你选择的色彩严重影响最重结果。也就是说，互动演示让你更简单快速得选择正确颜色来到达这一效果。
+
+In the interactive demo, you have an option to add editable text to the preview area, and then style that text and blend it with the preview image using `mix-blend-mode`. The following is a screenshot showing an example.
+
+在这个互动演示中，你可以选择在预览区域天价编辑文字，给文字赋予样式并使用`mix-blend-mode`与预览图片混合。下面是展示这个例子的截图。
 
 ![](css-blender-demo-screenshot-with-text.png)
 
@@ -314,15 +352,25 @@ In the interactive demo, you have an option to add editable text to the preview 
 
 Since we're talking about blending elements together, it only makes sense that we mention stacking contexts, especially considering that they affect how and what elements can be blended together.
 
-According to the specification, applying a blend mode other than normal to the element must establish a new stacking context on that element, forming a group. This group must then be blended and composited with the stacking context that contains the element.
+既然我们讨论了把元素混合在一起，只有在提到层级时才有意义，尤其是考虑到它们会影响到什么样的元素如何混合在一起。
 
-Also, an element that has blending applied, must blend with all the underlying content of the stacking context that that element belongs to. It will not blend with contents outside that context.
+According to the specification, applying a blend mode other than `normal` to the element must establish a new stacking context on that element, forming a group. This group must then be blended and composited with the stacking context that contains the element.
 
-For example, the following image shows the result of mix-blending two images with the overlay mode. (Live demo)
+根据规范，在元素上应用除`normal`外的混合模式必须在它之上建立一个新的层级，形成一组。这个组必须被包含这个元素的层级混合并复合。
+
+Also, an element that has blending applied, must blend with all the underlying content **of the stacking context that that element belongs to**. It will not blend with contents outside that context.
+
+另外，应用了混合的元素，必须和所有这个元素**所属层级的底层内容混合**。它不会和背景外的内容混合。
+
+For example, the following image shows the result of mix-blending two images with the `overlay` mode. ([Live demo](http://codepen.io/SaraSoueidan/pen/09efabde7114d37a736525b5ab616bc5?editors=110))
+
+例如，下面的图片展示了用`overlay`模式混合两张图片的结果([在线演示](http://codepen.io/SaraSoueidan/pen/09efabde7114d37a736525b5ab616bc5?editors=110))
 
 ![](mix-blend-mode-example-2.png)
 
 The code for the above simple example looks like so:
+
+上面这个简单例子的代码如下：
 
 ```
 	<div class="container">
@@ -333,7 +381,9 @@ The code for the above simple example looks like so:
 	</div>
 ```
 
-I've wrapped the image on top (the .source) in a div that I'm going to create a stacking context on. Since the opacity property leads to the creation of a new stacking context when given a value other than th default (1), I'm going to use that.
+I've wrapped the image on top (the `.source`) in a `div` that I'm going to create a stacking context on. Since the `opacity` property leads to the creation of a new stacking context when given a value other than th default (`1`), I'm going to use that.
+
+我把上方的图片（`.source`）包裹在我想要创建层叠环境的一个`div`中。因为当给`opacity`属性一个除了默认值（`1`）之外的值时会导致新层的创建，我将使用它。
 
 ```
 	.img-wrapper {
@@ -341,13 +391,21 @@ I've wrapped the image on top (the .source) in a div that I'm going to create a 
 	}
 ```
 
-(Try it in the live demo.)
+(Try it in the [live demo](http://codepen.io/SaraSoueidan/pen/09efabde7114d37a736525b5ab616bc5?editors=110).)
 
-By creating a stacking context, the .source image no longer blends with the bottom image, because the latter lies outside the stacking context containing the former.
+(去[在线例子](http://codepen.io/SaraSoueidan/pen/09efabde7114d37a736525b5ab616bc5?editors=110)尝试)
 
-This is because we have isolated the image (and any other contents of the .img-wrapper context) from the rest of the elements, and thus they don't blend with their backdrops anymore.
+By creating a stacking context, the `.source` image no longer blends with the bottom image, because the latter lies outside the stacking context containing the former.
 
-This brings us to the isolation property. But before we move on, note that the mix-blend-mode property also applies to SVG elements, and can be used to blend overlapping SVG elements together as well. As a matter of fact, the logo for the CSS Blender demo is a result of applying a mix-blend-mode to the three squares that make the demo up. You can see how the areas where these squares overlap have different colors due to the color blending applied.
+通过创建层叠环境，`.source`图片不再和底部图片混合，因为后者在包含前者的层叠环境之外。
+
+This is because we have **isolated** the image (and any other contents of the `.img-wrapper` context) from the rest of the elements, and thus they don't blend with their backdrops anymore.
+
+这是因为我们把图片和（和任何其他`.img-wrapper`背景的内容）元素的其余部分**隔离**了，因此它们不会再和背景混合。
+
+This brings us to the `isolation` property. But before we move on, note that the `mix-blend-mode` property also applies to SVG elements, and can be used to blend overlapping SVG elements together as well. As a matter of fact, the logo for the CSS Blender demo is a result of applying a mix-blend-mode to the three squares that make the demo up. You can see how the areas where these squares overlap have different colors due to the color blending applied.
+
+这把我们引入了`isolation`属性。在我们继续前，注意`mix-blend-mode`属性也可以应用在SVG元素上，
 
 Browser support for the mix-blend-mode property is not as wide as that of the background-blend-mode property. For details, refer to the browser compatibility table over at CanIUse.com.
 
