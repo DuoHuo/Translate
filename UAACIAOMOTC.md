@@ -294,3 +294,5 @@
 这是我们确实碰到的问题，当我们改变```h2```时会引起```.block h2```的改变并且引起代码的回滚。
 
 这些点子并不是新的，但是随着网页的成熟，以及项目复杂性的增加，它们和我们的行业愈发相关。不管是对我还是我的代码来说，我将花更多的时间来阅读其他的语言，那些语言在12年前也发生过我们现在面对的那些相似的问题。在[这里](http://phase2technology.com/?s=css)阅读更多Phase2对于CSS的想法。
+
+原文地址：http://www.phase2technology.com/blog/used-and-abused-css-inheritance-and-our-misuse-of-the-cascade

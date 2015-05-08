@@ -160,4 +160,4 @@ A tutorial on creating a style guide
 
 * “[Blueprints for the Web: Specctr Adobe Fireworks Plugin](http://www.smashingmagazine.com/2012/05/25/blueprints-for-the-web-specctr-adobe-fireworks-plugin/)”and“[Blueprints for Web and Print: Specctr, a Free Adobe Illustrator Plugin](http://www.smashingmagazine.com/2013/11/15/specctr-an-adobe-illustrator-plugin-freebie/),” Chen Blume, Smashing Magazine Examples of using the Specctr plugins for Fireworks and Illustrator
 
-我想要感谢[Michel Bozgounov](http://www.smashingmagazine.com/author/michel-bozgounov/)，他帮助我探索这篇文章并且提供了一些改进的建议。
+我想要感谢[Michel Bozgounov](http://www.smashingmagazine.com/author/michel-bozgounov/)，他帮助我探索这篇文章并且提供了一些改进的建议。  
